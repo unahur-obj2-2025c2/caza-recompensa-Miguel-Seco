@@ -1,10 +1,10 @@
 package ar.edu.unahur.obj2.Cazador;
 
 
-public class Profugo {
+public class Profugo implements Profugable{
 
-    private Integer inocencia;
-    private Integer habilidad;
+    private Integer inocencia; // entre mas bajo es mas culpable se lo considera
+    private Integer habilidad; // lo determina la capacidad de evadir la captura
     private Boolean esNervioso;
 
     public Profugo(Integer inocencia, Integer habilidad, Boolean esNervioso) {
@@ -13,25 +13,39 @@ public class Profugo {
         this.esNervioso = esNervioso;
     }
 
+    @Override
     public Integer getInocencia() {
-        return inocencia;
+        return this.inocencia;
     }
 
-    public Boolean EstaNervioso() {
-        return esNervioso;
-    }
-
+    @Override
     public Integer getHabilidad() {
-        return habilidad;
+        return this.habilidad;
     }
 
+    @Override
+    public Boolean esNervioso() {
+        return this.esNervioso;
+    }
+
+    @Override
+    public void volverseNervioso() {
+        esNervioso = true;
+    }
+
+    @Override
+    public void dejarDeEstarNervioso() {
+        esNervioso = false;
+    }
+
+    @Override
+    public void reducirHabilidad() {
+         habilidad = Integer.max(0, habilidad - 5);
+    }
+
+    @Override
     public void disminuirInocencia() {
         inocencia = Integer.max(0,inocencia - 2);
-    }
-
-    public void reducirHabilidad() {
-        habilidad = Integer.max(0, habilidad - 5);
-    }
+    }    
     
-
 }
